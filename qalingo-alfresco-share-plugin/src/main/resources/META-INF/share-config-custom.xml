@@ -1,0 +1,985 @@
+<alfresco-config>
+	
+	
+   <config evaluator="string-compare" condition="Remote">
+      <remote>       
+         <endpoint>
+            <id>qalingo</id>
+            <name>qalingo - webScript</name>
+            <description>Access qalingo - webScript.</description>
+            <connector-id>http</connector-id>
+            <endpoint-url>http://remote-rest.demo.qalingo.com/rest/cms</endpoint-url>
+            <identity>none</identity>
+         </endpoint>         
+      </remote>
+   </config>
+  
+   
+   <config evaluator="string-compare" condition="DocumentLibrary" replace="true">
+   	  <types>
+		 <type name="cm:content">
+		 	<subtype name="hta:master" />
+		 </type>
+		 
+		 <type name="hta:master">
+			<subtype name="hta:product" />
+		 </type>
+		 
+      </types>
+      
+      <aspects>
+		<visible></visible>
+		<addable></addable>
+		<removeable></removeable>
+	  </aspects>
+     
+      <create-content>
+		 <content mimetype="text/plain" icon="plain-text" label="Master" itemid="hta:master"/>
+		 <content id="folder" label="create-content.folder" icon="folder" index="5" type="javascript">
+            <param name="function">onNewFolder</param>
+         </content>
+		 
+      </create-content>
+
+      <create-content-by-template>false</create-content-by-template>
+        
+   </config>
+   
+   <config evaluator="string-compare" condition="AdvancedSearch" replace="true">
+      <advanced-search>
+         <forms>
+			<form labelId="search.form.label.cm_content" descriptionId="search.form.desc.cm_content">cm:content</form>
+			<form labelId="hoteia.search.fiches.title" descriptionId="hoteia.search.fiches.description">hta:product</form>
+			<form labelId="hoteia.search.master.title" descriptionId="hoteia.search.master.description">hta:master</form>
+			
+		 </forms> 	
+      </advanced-search>
+   </config>
+	
+	
+	
+   <config evaluator="model-type" condition="hta:standardDataListe">
+         <forms>
+			<form>
+                <field-visibility>
+                   <show id="hta:idTypeParam" />
+				   <show id="hta:idParamStandard" />
+				   <show id="hta:libelleParamStandard" />
+				</field-visibility>
+				<create-form template="/org/alfresco/components/data-lists/forms/dataitem.ftl" />
+			</form>	
+			 <form id="datagrid">
+				<field-visibility>
+				   <show id="hta:idTypeParam" />
+				   <show id="hta:idParamStandard" />
+				   <show id="hta:libelleParamStandard" />
+				</field-visibility>
+			 </form>
+		 </forms>
+   </config>
+   
+   <config evaluator="node-type" condition="hta:standardDataListe">
+      <forms>
+        
+         <form>
+            <field-visibility>
+                <show id="hta:idTypeParam" />
+				<show id="hta:idParamStandard" />
+				<show id="hta:libelleParamStandard" />
+            </field-visibility>
+            <edit-form template="/org/alfresco/components/data-lists/forms/dataitem.ftl" />          
+         </form>
+      </forms>
+   </config>
+   
+   <config evaluator="model-type" condition="hta:typeDocumentsListe">
+         <forms>
+			<form>
+                <field-visibility>
+				   <show id="hta:tpDocId" />
+				   <show id="hta:tpDocName" />
+				   <show id="hta:tpDocAspect1" />
+				   <show id="hta:tpDocAspect2" />
+				   <show id="hta:tpDocAspect3" />
+				   <show id="hta:tpDocAspect4" />
+				   <show id="hta:tpDocAspect5" />
+				   <show id="hta:tpDocAspect6" />
+				</field-visibility>
+				<create-form template="/org/alfresco/components/data-lists/forms/dataitem.ftl" />
+			</form>	
+			 <form id="datagrid">
+				<field-visibility>
+				   <show id="hta:tpDocId" />	
+				   <show id="hta:tpDocName" />
+				   <show id="hta:tpDocAspect1" />
+				   <show id="hta:tpDocAspect2" />
+				   <show id="hta:tpDocAspect3" />
+				   <show id="hta:tpDocAspect4" />
+				   <show id="hta:tpDocAspect5" />
+				   <show id="hta:tpDocAspect6" />
+				</field-visibility>
+			 </form>
+		 </forms>
+   </config>
+   
+   <config evaluator="node-type" condition="hta:typeDocumentsListe">
+      <forms>
+        
+         <form>
+            <field-visibility>
+				<show id="hta:tpDocId" />
+				<show id="hta:tpDocName" />
+				<show id="hta:tpDocAspect1" />
+				<show id="hta:tpDocAspect2" />
+				<show id="hta:tpDocAspect3" />
+				<show id="hta:tpDocAspect4" />
+				<show id="hta:tpDocAspect5" />
+				<show id="hta:tpDocAspect6" />
+            </field-visibility>
+            <edit-form template="/org/alfresco/components/data-lists/forms/dataitem.ftl" />
+           
+         </form>
+      </forms>
+   </config>
+   
+   
+   
+   <config evaluator="model-type" condition="hta:master">
+		<forms>
+			<form>
+                <field-visibility>
+                	<show id="cm:name" />
+                	<show id="hta:type" />
+                </field-visibility>
+                <appearance>
+                	<field id="hta:type">
+						<control template="/org/alfresco/components/form/controls/selectone_typeMaster.ftl" />
+					</field>
+                </appearance>
+   			</form>
+   			<form id="search">
+				<field-visibility>
+				   <show id="hta:type" />
+				</field-visibility>
+				<appearance>
+					<field id="hta:type">
+						<control template="/org/alfresco/components/form/controls/selectone_typeMaster.ftl" />
+					</field>
+				</appearance>
+			 </form>	
+   		</forms>
+   	</config>		
+   
+   
+   <config evaluator="node-type" condition="hta:master">
+         <forms>
+			<form>
+                <field-visibility>
+                	<show id="cm:name" />
+                	<show id="hta:type" />
+                </field-visibility>
+                <appearance>
+                	<field id="hta:type">
+						<control template="/org/alfresco/components/form/controls/selectone_typeMaster.ftl" />
+					</field>
+                </appearance>
+            </form>
+         </forms>
+   </config>             
+   
+   <config evaluator="aspect" condition="hta:commonAspect">
+		<forms>
+			<form>
+                <field-visibility>
+                   <show id="hta:identifiant" />
+                   <show id="hta:state" for-mode="view" />
+                   <show id="hta:codeMarketPlace" for-mode="view"  />
+                   <show id="hta:codeMarket"  />
+                   <show id="hta:codeMarketArea"/>
+                   <show id="hta:codeRetailers"/>
+                   <show id="hta:codeLocalizations"/>
+                </field-visibility>
+                <appearance>
+                	<set id="infos" appearance="fieldset" label-id="hoteia.set.infos" />
+                	
+                	<field id="hta:identifiant" set="infos" />
+	               <field id="hta:codeMarketPlace" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_marketplace.ftl" />
+					</field>
+					<field id="hta:codeMarket" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_market.ftl" />
+					</field>
+					<field id="hta:codeMarketArea" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_marketarea.ftl" />
+					</field>
+					<field id="hta:codeLocalizations" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_localizations.ftl" />
+					</field>
+					<field id="hta:codeRetailers" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_retailers.ftl" />
+					</field>
+					<field id="hta:state" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_state.ftl" />
+					</field>
+                </appearance>
+            </form>
+          </forms>      
+   </config>  
+   
+   
+   <config evaluator="aspect" condition="hta:attachable">
+		<forms>
+			<form>
+                <field-visibility>
+                	<show id="hta:imgProduit"  />
+            	    <show id="hta:imgDigital"  />
+            	    <show id="hta:imgVideo"  />
+                </field-visibility>
+                <appearance>
+                	<set id="attachements" appearance="fieldset" label-id="hoteia.set.attachements" />
+                	
+                	<field id="hta:imgProduit" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:imgDigital" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:imgVideo" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+                </appearance>
+            </form>
+        </forms>
+   </config>     
+   
+   <config evaluator="aspect" condition="hta:ficheAspect">
+		<forms>
+			<form>
+                <field-visibility>
+                   <show id="hta:codeProduct" />
+				   <show id="hta:nameProduct" />
+            	   <show id="hta:descriptionProduct" />
+            	   <show id="hta:segmentSeoProduct" />
+            	   <show id="hta:ogTitleProduct" />
+            	   <show id="hta:ogDescriptionProduct" />
+            	   <show id="hta:ogImageProduct" />
+                </field-visibility>
+                <appearance>
+                   <set id="products" appearance="fieldset" label-id="hoteia.set.products" />
+				   <set id="subinfos" appearance="fieldset" label-id="hoteia.set.subinfos" />
+                   
+                   <field id="hta:codeProduct" set="products" />
+				   <field id="hta:nameProduct" set="products" />
+            	   <field id="hta:descriptionProduct" set="products" />
+	               <field id="hta:segmentSeoProduct" set="subinfos" />
+            	   <field id="hta:ogTitleProduct" set="subinfos" />
+            	   <field id="hta:ogDescriptionProduct" set="subinfos" />
+            	   <field id="hta:ogImageProduct" set="subinfos" />
+                </appearance>
+            </form>
+        </forms>
+   </config>
+   
+   <config evaluator="aspect" condition="hta:productFicheAspect">
+		<forms>
+			<form>
+                <field-visibility>
+                	<show id="hta:parentMasterId" />
+                </field-visibility>
+                <appearance>
+                	<set id="attachements" appearance="fieldset" label-id="hoteia.set.attachements" />
+                	
+                	<field id="hta:parentMasterId" set="attachements" />
+                </appearance>
+            </form>
+        </forms>
+   </config>                      
+                
+   
+   <config evaluator="aspect" condition="hta:storeAspect">
+		<forms>
+			<form>
+                <field-visibility>
+                	<show id="hta:codeStore" />
+                </field-visibility>
+                <appearance>
+                </appearance>
+            </form>
+        </forms>
+   </config>             
+   
+   
+   	<config evaluator="aspect" condition="hta:catAspect">
+		<forms>
+			<form>
+                <field-visibility>
+                	<show id="hta:codeCategorieOnly" />
+                </field-visibility>
+                <appearance>
+                	<set id="products" appearance="fieldset" label-id="hoteia.set.products" />
+                	
+                	<field id="hta:codeCategorieOnly" set="products">
+						<control template="/org/alfresco/components/form/controls/selectone_categories.ftl" />
+					</field>
+                </appearance>
+            </form>
+        </forms>
+   </config>
+   	
+   	<config evaluator="aspect" condition="hta:catProdAspect">
+		<forms>
+			<form>
+                <field-visibility>
+                	<show id="hta:codeCategorie" />
+                	<show id="hta:codeProduits" />
+                </field-visibility>
+                <appearance>
+                	<set id="products" appearance="fieldset" label-id="hoteia.set.products" />
+                	
+                	<field id="hta:codeCategorie" set="products">
+						<control template="/org/alfresco/components/form/controls/selectone_categories.ftl" />
+					</field>
+                	<field id="hta:codeProduits" set="products" />
+                </appearance>
+            </form>
+        </forms>
+   </config>
+   
+   <config evaluator="model-type" condition="hta:fichesMaster">
+		<forms>
+			<form>
+                <field-visibility>
+                   <show id="cm:name" />
+                   <show id="hta:identifiant" />
+                   <show id="hta:state" for-mode="view" />
+                   <show id="hta:codeMarketPlace" for-mode="view"  />
+                   <show id="hta:codeMarket"  />
+                   <show id="hta:codeMarketArea"/>
+                   <show id="hta:codeRetailers"/>
+                   <show id="hta:codeLocalizations"/>
+                   <show id="hta:codeCategorie"/>
+                   <show id="hta:codeProduits"/>
+                   <show id="hta:codeProduct" />
+				   <show id="hta:nameProduct" />
+            	   <show id="hta:descriptionProduct" />
+            	   <show id="hta:segmentSeoProduct" />
+            	   <show id="hta:ogTitleProduct" />
+            	   <show id="hta:ogDescriptionProduct" />
+            	   <show id="hta:ogImageProduct" />
+            	   <show id="hta:imgProduit"  />
+            	   <show id="hta:imgDigital"  />
+            	   <show id="hta:imgVideo"  />
+				</field-visibility>
+				 <appearance>
+                	<set id="infos" appearance="fieldset" label-id="hoteia.set.infos" />
+				    <set id="products" appearance="fieldset" label-id="hoteia.set.products" />
+					<set id="subinfos" appearance="fieldset" label-id="hoteia.set.subinfos" />
+					<set id="attachements" appearance="fieldset" label-id="hoteia.set.attachements" />
+				 
+                	<field id="hta:descriptionProduct">
+	                  <control template="/org/alfresco/components/form/controls/textarea.ftl">
+	                     <control-param name="style">width: 95%</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:ogDescriptionProduct">
+	                  <control template="/org/alfresco/components/form/controls/textarea.ftl">
+	                     <control-param name="style">width: 95%</control-param>
+	                  </control>
+	               </field>
+	               
+	               <field id="cm:name" set="infos" />
+	               <field id="hta:identifiant" set="infos" />
+	               <field id="hta:codeMarketPlace" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_marketplace.ftl" />
+					</field>
+					<field id="hta:codeMarket" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_market.ftl" />
+					</field>
+					<field id="hta:codeMarketArea" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_marketarea.ftl" />
+					</field>
+					<field id="hta:codeLocalizations" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_localizations.ftl" />
+					</field>
+					<field id="hta:codeRetailers" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_retailers.ftl" />
+					</field>
+					<field id="hta:codeCategorie" set="infos" />
+	                <field id="hta:codeProduits" set="infos" />
+					<field id="hta:state" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_state.ftl" />
+					</field>
+	               
+	               <field id="hta:codeProduct" set="products" />
+				   <field id="hta:nameProduct" set="products" />
+            	   <field id="hta:descriptionProduct" set="products" />
+	               
+	               <field id="hta:segmentSeoProduct" set="subinfos" />
+            	   <field id="hta:ogTitleProduct" set="subinfos" />
+            	   <field id="hta:ogDescriptionProduct" set="subinfos" />
+            	   <field id="hta:ogImageProduct" set="subinfos" />
+	               
+	               <field id="hta:parentMasterId" set="attachements" />
+	               <field id="hta:imgProduit" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:imgDigital" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:imgVideo" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+	             </appearance>
+			</form>
+			 <form id="search">
+				<field-visibility>
+				   <show id="hta:identifiant" />
+				   <show id="hta:codeProduct" />
+				   <show id="hta:nameProduct" />
+            	   <show id="hta:descriptionProduct" />
+            	   <show id="hta:codeMarketPlace" />
+                   <show id="hta:codeMarket"  />
+                   <show id="hta:codeMarketArea"/>
+				</field-visibility>
+				<appearance>
+				</appearance>
+			 </form>	
+		</forms>
+	</config>			
+	
+	<config evaluator="node-type" condition="hta:fichesMaster">
+         <forms>
+			<form>
+                <field-visibility>
+                   <show id="cm:name" />	
+                   <show id="hta:identifiant" />
+                   <show id="hta:state" for-mode="view" />
+                   <show id="hta:codeMarketPlace" for-mode="view"  />
+                   <show id="hta:codeMarket"  />
+                   <show id="hta:codeMarketArea"/>
+                   <show id="hta:codeRetailers"/>
+                   <show id="hta:codeLocalizations"/>
+                   <show id="hta:codeCategorie"/>
+                   <show id="hta:codeProduits"/>
+                   <show id="hta:codeProduct" />
+				   <show id="hta:nameProduct" />
+            	   <show id="hta:descriptionProduct" />
+            	   <show id="hta:segmentSeoProduct" />
+            	   <show id="hta:ogTitleProduct" />
+            	   <show id="hta:ogDescriptionProduct" />
+            	   <show id="hta:ogImageProduct" />
+            	   <show id="hta:imgProduit"  />
+            	   <show id="hta:imgDigital"  />
+            	   <show id="hta:imgVideo"  />
+                </field-visibility>
+                <appearance>
+                	<set id="infos" appearance="fieldset" label-id="hoteia.set.infos" />
+				    <set id="products" appearance="fieldset" label-id="hoteia.set.products" />
+					<set id="subinfos" appearance="fieldset" label-id="hoteia.set.subinfos" />
+					<set id="attachements" appearance="fieldset" label-id="hoteia.set.attachements" />
+				 
+                	<field id="hta:descriptionProduct">
+	                  <control template="/org/alfresco/components/form/controls/textarea.ftl">
+	                     <control-param name="style">width: 95%</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:ogDescriptionProduct">
+	                  <control template="/org/alfresco/components/form/controls/textarea.ftl">
+	                     <control-param name="style">width: 95%</control-param>
+	                  </control>
+	               </field>
+	               
+	               <field id="cm:name" set="infos" />
+	               <field id="hta:identifiant" set="infos" />
+	               <field id="hta:codeMarketPlace" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_marketplace.ftl" />
+					</field>
+					<field id="hta:codeMarket" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_market.ftl" />
+					</field>
+					<field id="hta:codeMarketArea" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_marketarea.ftl" />
+					</field>
+					<field id="hta:codeLocalizations" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_localizations.ftl" />
+					</field>
+					<field id="hta:codeRetailers" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_retailers.ftl" />
+					</field>
+					<field id="hta:codeCategorie" set="infos" />
+	                <field id="hta:codeProduits" set="infos" />
+					<field id="hta:state" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_state.ftl" />
+					</field>
+	               
+	               <field id="hta:codeProduct" set="products" />
+				   <field id="hta:nameProduct" set="products" />
+            	   <field id="hta:descriptionProduct" set="products" />
+	               
+	               <field id="hta:segmentSeoProduct" set="subinfos" />
+            	   <field id="hta:ogTitleProduct" set="subinfos" />
+            	   <field id="hta:ogDescriptionProduct" set="subinfos" />
+            	   <field id="hta:ogImageProduct" set="subinfos" />
+	               
+	               <field id="hta:parentMasterId" set="attachements" />
+	               <field id="hta:imgProduit" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:imgDigital" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:imgVideo" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+				</appearance>
+			</form>
+		</forms>	
+	</config>
+	
+	<config evaluator="model-type" condition="hta:fichesProduct">
+		<forms>
+			<form>
+                <field-visibility>
+                   <show id="cm:name" />
+                   <show id="hta:identifiant" />
+                   <show id="hta:state" for-mode="view" />
+                   <show id="hta:codeMarketPlace"  />
+                   <show id="hta:codeMarket"  />
+                   <show id="hta:codeMarketArea"/>
+                   <show id="hta:codeRetailers"/>
+                   <show id="hta:codeLocalizations"/>
+                   <show id="hta:codeCategorie"/>
+                   <show id="hta:codeProduits"/>
+                   <show id="hta:codeProduct" />
+				   <show id="hta:nameProduct" />
+            	   <show id="hta:descriptionProduct" />
+            	   <show id="hta:segmentSeoProduct" />
+            	   <show id="hta:ogTitleProduct" />
+            	   <show id="hta:ogDescriptionProduct" />
+            	   <show id="hta:ogImageProduct" />
+            	   <show id="hta:parentMasterId" />
+            	   <show id="hta:imgProduit"  />
+            	   <show id="hta:imgDigital"  />
+            	   <show id="hta:imgVideo"  />
+				</field-visibility>
+				 <appearance>
+				 
+				    <set id="infos" appearance="fieldset" label-id="hoteia.set.infos" />
+				    <set id="products" appearance="fieldset" label-id="hoteia.set.products" />
+					<set id="subinfos" appearance="fieldset" label-id="hoteia.set.subinfos" />
+					<set id="attachements" appearance="fieldset" label-id="hoteia.set.attachements" />
+				 
+                	<field id="hta:descriptionProduct">
+	                  <control template="/org/alfresco/components/form/controls/textarea.ftl">
+	                     <control-param name="style">width: 95%</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:ogDescriptionProduct">
+	                  <control template="/org/alfresco/components/form/controls/textarea.ftl">
+	                     <control-param name="style">width: 95%</control-param>
+	                  </control>
+	               </field>
+	               
+	               <field id="cm:name" set="infos" />
+	               <field id="hta:identifiant" set="infos" />
+	               <field id="hta:codeMarketPlace" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_marketplace.ftl" />
+					</field>
+					<field id="hta:codeMarket" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_market.ftl" />
+					</field>
+					<field id="hta:codeMarketArea" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_marketarea.ftl" />
+					</field>
+					<field id="hta:codeLocalizations" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_localizations.ftl" />
+					</field>
+					<field id="hta:codeRetailers" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_retailers.ftl" />
+					</field>
+					<field id="hta:codeCategorie" set="infos" />
+	                <field id="hta:codeProduits" set="infos" />
+					<field id="hta:state" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_state.ftl" />
+					</field>
+	               
+	               <field id="hta:codeProduct" set="products" />
+				   <field id="hta:nameProduct" set="products" />
+            	   <field id="hta:descriptionProduct" set="products" />
+	               
+	               <field id="hta:segmentSeoProduct" set="subinfos" />
+            	   <field id="hta:ogTitleProduct" set="subinfos" />
+            	   <field id="hta:ogDescriptionProduct" set="subinfos" />
+            	   <field id="hta:ogImageProduct" set="subinfos" />
+	               
+	               <field id="hta:parentMasterId" set="attachements" />
+	               <field id="hta:imgProduit" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:imgDigital" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:imgVideo" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+	             </appearance>
+			</form>
+			 <form id="search">
+				<field-visibility>
+				   <show id="hta:identifiant" />
+                   <show id="hta:codeMarketPlace"  />
+                   <show id="hta:codeMarket"  />
+                   <show id="hta:codeMarketArea"/>
+				   <show id="hta:codeProduct" />
+				   <show id="hta:nameProduct" />
+            	   <show id="hta:descriptionProduct" />
+				</field-visibility>
+				<appearance>
+					<field id="hta:codeMarketPlace">
+						<control template="/org/alfresco/components/form/controls/selectone_marketplace.ftl" />
+					</field>
+					<field id="hta:codeMarket">
+						<control template="/org/alfresco/components/form/controls/selectone_market.ftl" />
+					</field>
+					<field id="hta:codeMarketArea">
+						<control template="/org/alfresco/components/form/controls/selectone_marketarea.ftl" />
+					</field>
+				</appearance>
+			 </form>	
+		</forms>
+	</config>			
+	
+	<config evaluator="node-type" condition="hta:fichesProduct">
+         <forms>
+			<form>
+                <field-visibility>
+                   <show id="cm:name" />	
+                   <show id="hta:identifiant" />
+                   <show id="hta:state" for-mode="view" />
+                   <show id="hta:codeMarketPlace"  />
+                   <show id="hta:codeMarket"  />
+                   <show id="hta:codeMarketArea"/>
+                   <show id="hta:codeRetailers"/>
+                   <show id="hta:codeLocalizations"/>
+                   <show id="hta:codeCategorie"/>
+                   <show id="hta:codeProduits"/>
+                   <show id="hta:codeProduct" />
+				   <show id="hta:nameProduct" />
+            	   <show id="hta:descriptionProduct" />
+            	   <show id="hta:segmentSeoProduct" />
+            	   <show id="hta:ogTitleProduct" />
+            	   <show id="hta:ogDescriptionProduct" />
+            	   <show id="hta:ogImageProduct" />
+            	   <show id="hta:parentMasterId" />
+            	   <show id="hta:imgProduit"  />
+            	   <show id="hta:imgDigital"  />
+            	   <show id="hta:imgVideo"  />
+                </field-visibility>
+                <appearance>
+                	<set id="infos" appearance="fieldset" label-id="hoteia.set.infos" />
+				    <set id="products" appearance="fieldset" label-id="hoteia.set.products" />
+					<set id="subinfos" appearance="fieldset" label-id="hoteia.set.subinfos" />
+					<set id="attachements" appearance="fieldset" label-id="hoteia.set.attachements" />
+				 
+                	<field id="hta:descriptionProduct">
+	                  <control template="/org/alfresco/components/form/controls/textarea.ftl">
+	                     <control-param name="style">width: 95%</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:ogDescriptionProduct">
+	                  <control template="/org/alfresco/components/form/controls/textarea.ftl">
+	                     <control-param name="style">width: 95%</control-param>
+	                  </control>
+	               </field>
+	               
+	               <field id="cm:name" set="infos" />
+	               <field id="hta:identifiant" set="infos" />
+	               <field id="hta:codeMarketPlace" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_marketplace.ftl" />
+					</field>
+					<field id="hta:codeMarket" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_market.ftl" />
+					</field>
+					<field id="hta:codeMarketArea" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_marketarea.ftl" />
+					</field>
+					<field id="hta:codeLocalizations" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_localizations.ftl" />
+					</field>
+					<field id="hta:codeRetailers" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_retailers.ftl" />
+					</field>
+					<field id="hta:codeCategorie" set="infos" />
+	                <field id="hta:codeProduits" set="infos" />
+					<field id="hta:state" set="infos">
+						<control template="/org/alfresco/components/form/controls/selectone_state.ftl" />
+					</field>
+	               
+	               <field id="hta:codeProduct" set="products" />
+				   <field id="hta:nameProduct" set="products" />
+            	   <field id="hta:descriptionProduct" set="products" />
+	               
+	               <field id="hta:segmentSeoProduct" set="subinfos" />
+            	   <field id="hta:ogTitleProduct" set="subinfos" />
+            	   <field id="hta:ogDescriptionProduct" set="subinfos" />
+            	   <field id="hta:ogImageProduct" set="subinfos" />
+	               
+	               <field id="hta:parentMasterId" set="attachements" />
+	               <field id="hta:imgProduit" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:imgDigital" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+	               <field id="hta:imgVideo" set="attachements">
+	                  <control>
+	                    <control-param name="startLocation">{doclib}</control-param>
+	                  </control>
+	               </field>
+				</appearance>
+			</form>
+		</forms>	
+	</config>
+	
+	<!-- Gestion des actions -->
+	<config evaluator="string-compare" condition="DocLibCustom">
+          <dependencies>
+             <js src="components/documentlibrary/startSynchronization/startSynchronization-action.js" />
+             <js src="components/documentlibrary/startCreateProduct/startCreateProduct-action.js" />
+             <js src="components/documentlibrary/addContent/addContent-action.js" />
+             <js src="components/documentlibrary/validateDocument/validateDocument-action.js" />
+             <js src="components/documentlibrary/rollbackDocument/rollbackDocument-action.js" />
+          </dependencies>
+       <dependencies />
+   </config>
+   
+	
+	
+	
+	<config evaluator="string-compare" condition="DocLibActions">
+	
+		<actions>
+			<action id="com.hoteia.doclib.action.startSync"
+              icon="startSync"
+              type="javascript"
+              label="actions.hoteia.startSync">
+         		<param name="function">onActionStartSynchronization</param>
+         		<param name="successMessage">message.startSynchronization.success</param>
+         		<param name="failureMessage">message.startSynchronization.failure</param>
+         		<evaluator>evaluator.doclib.indicator.aspectMaster</evaluator>
+      		</action>
+      		<action id="com.hoteia.doclib.action.startCreateFiche"
+              icon="createProduct"
+              type="javascript"
+              label="actions.hoteia.startCreate">
+         		<param name="function">onActionStartCreateProduct</param>
+         		<param name="successMessage">message.startCreateProduct.success</param>
+         		<param name="failureMessage">message.startCreateProduct.failure</param>
+         		<evaluator>evaluator.doclib.indicator.aspectMaster</evaluator>
+      		</action>
+      		
+      		<action id="com.hoteia.doclib.action.validateDocument"
+              icon="validateDocument"
+              type="javascript"
+              label="actions.hoteia.validateDocument">
+         		<param name="function">onActionValidateDocument</param>
+         		<param name="successMessage">message.validateDocument.success</param>
+         		<param name="failureMessage">message.validateDocument.failure</param>
+         		<evaluator>evaluator.doclib.indicator.aspectCommon</evaluator>
+      		</action>
+      		
+      		<action id="com.hoteia.doclib.action.rollbackDocument"
+              icon="rollbackDocument"
+              type="javascript"
+              label="actions.hoteia.rollbackDocument">
+         		<param name="function">onActionRollbackDocument</param>
+         		<param name="successMessage">message.rollbackDocument.success</param>
+         		<param name="failureMessage">message.rollbackDocument.failure</param>
+         		<evaluator>evaluator.doclib.indicator.aspectCommon</evaluator>
+      		</action>
+      		
+      		<action id="com.hoteia.doclib.action.addContent"
+              icon="addContent"
+              type="javascript"
+              label="actions.hoteia.addContent">
+         		<param name="function">onActionAddContent</param>
+         		<param name="successMessage">message.addContent.success</param>
+         		<param name="failureMessage">message.addContent.failure</param>
+         		<evaluator>evaluator.doclib.indicator.typeMaster</evaluator>
+      		</action>
+		</actions>
+		
+		<actionGroups>
+	         <actionGroup id="empty"/>
+	
+	         <actionGroup id="document-browse">
+	            <action index="100" id="document-download" />
+	            <action index="105" id="com.hoteia.doclib.action.startSync" />
+	            <action index="110" id="com.hoteia.doclib.action.startCreateFiche" />
+	            <action index="115" id="com.hoteia.doclib.action.validateDocument" />
+	            <action index="120" id="com.hoteia.doclib.action.rollbackDocument" />
+	            <action index="125" id="document-view-content" />
+	            <action index="130" id="document-locate" />
+	            <action index="135" id="document-edit-properties" />
+	            <action index="140" id="document-upload-new-version" />
+	            <action index="150" id="document-view-original" />
+	            <action index="160" id="document-view-working-copy" />
+	            <action index="170" id="document-approve" />
+	            <action index="180" id="document-reject" />
+	            <action index="190" id="document-inline-edit" />
+	            <action index="200" id="document-edit-online" />
+	            <action index="210" id="document-edit-offline" />
+	            <action index="220" id="document-view-googledoc" />
+	            <action index="230" id="document-checkout-to-googledocs" />
+	            <action index="240" id="document-checkin-from-googledocs" />
+	            <action index="250" id="document-copy-to" />
+	            <action index="260" id="document-move-to" />
+	            <action index="270" id="document-delete" />
+	            <action index="280" id="document-assign-workflow" />
+	            <action index="290" id="document-cancel-editing" />
+	            <action index="297" id="document-manage-granular-permissions" />
+	            <action index="300" id="document-publish" />
+	            <action index="310" id="document-view-googlemaps" />
+	            <action index="320" id="document-view-in-source-repository" />
+	            <action index="330" id="document-cloud-sync" />
+	            <action index="340" id="document-cloud-unsync" />
+	            <action index="350" id="document-view-in-cloud" />
+	            <action index="360" id="document-request-sync"/> 
+	         </actionGroup>
+	
+	         <actionGroup id="document-details">
+	            <action index="100" id="document-download" />
+	            <action index="105" id="com.hoteia.doclib.action.startSync" />
+	            <action index="110" id="com.hoteia.doclib.action.startCreateFiche" />
+	            <action index="115" id="com.hoteia.doclib.action.validateDocument" />
+	            <action index="120" id="com.hoteia.doclib.action.rollbackDocument" />
+	            <action index="125" id="document-view-content" />
+	            <action index="130" id="document-edit-metadata" />
+	            <action index="135" id="document-upload-new-version" />
+	            <action index="140" id="document-view-original" />
+	            <action index="150" id="document-view-working-copy" />
+	            <action index="160" id="document-approve" />
+	            <action index="170" id="document-reject" />
+	            <action index="180" id="document-inline-edit" />
+	            <action index="190" id="document-edit-online" />
+	            <action index="200" id="document-edit-offline" />
+	            <action index="210" id="document-view-googledoc" />
+	            <action index="220" id="document-checkout-to-googledocs" />
+	            <action index="230" id="document-checkin-from-googledocs" />
+	            <action index="240" id="document-copy-to" />
+	            <action index="250" id="document-move-to" />
+	            <action index="260" id="document-delete" />
+	            <action index="270" id="document-assign-workflow" />
+	            <action index="280" id="document-cancel-editing" />
+	            <action index="290" id="document-manage-granular-permissions" />
+	            <action index="300" id="document-manage-repo-permissions" />
+	            <action index="310" id="document-manage-aspects" />
+	            <action index="320" id="document-change-type" />
+	            <action index="330" id="document-view-in-source-repository" />
+	            <action index="340" id="document-publish" />
+	            <action index="350" id="document-view-googlemaps" />
+	            <action index="360" id="document-cloud-sync" />
+	            <action index="370" id="document-cloud-unsync" />
+	            <action index="380" id="document-view-in-cloud" />
+	            <action index="390" id="document-request-sync"/>
+	         </actionGroup>
+	
+	         <actionGroup id="folder-browse">
+	            <action index="100" id="folder-download"/>
+	            <action index="105" id="folder-view-details" />
+	            <action index="110" id="document-edit-properties" icon="folder-edit-properties" label="actions.folder.edit-metadata" />
+	            <action index="120" id="document-approve" icon="folder-approve" />
+	            <action index="130" id="document-reject" icon="folder-reject" />
+	            <action index="140" id="document-locate" icon="document-locate" label="actions.folder.locate" />
+	            <action index="150" id="document-copy-to" icon="folder-copy-to" label="actions.folder.copy-to" />
+	            <action index="160" id="document-move-to" icon="folder-move-to" label="actions.folder.move-to" />
+	            <action index="170" id="folder-manage-rules" />
+	            <action index="180" id="document-delete" icon="folder-delete" label="actions.folder.delete" />
+	            <action index="190" id="document-manage-granular-permissions" icon="folder-manage-permissions" label="actions.folder.manage-permissions" />
+	            <action index="200" id="document-manage-repo-permissions" icon="folder-manage-permissions" label="actions.folder.manage-permissions" />
+	            <action index="210" id="document-manage-aspects" label="actions.folder.manage-aspects" />
+	            <action index="220" id="document-view-in-source-repository" label="actions.folder.view-source-repository" />
+	            <action index="310" id="document-view-googlemaps" />
+	            <action index="360" id="document-cloud-sync" />
+	            <action index="370" id="document-cloud-unsync" />
+	            <action index="380" id="document-view-in-cloud" />
+	            <action index="390" id="document-request-sync"/>
+	         </actionGroup>
+	
+	         <actionGroup id="folder-details">
+	            <action index="100" id="folder-download"/>
+	            <action index="105" id="document-edit-metadata" icon="folder-edit-metadata" label="actions.folder.edit-metadata" />
+	            <action index="110" id="document-approve" icon="folder-approve" />
+	            <action index="120" id="document-reject" icon="folder-reject" />
+	            <action index="130" id="document-copy-to" icon="folder-copy-to" label="actions.folder.copy-to" />
+	            <action index="140" id="document-move-to" icon="folder-move-to" label="actions.folder.move-to" />
+	            <action index="150" id="folder-manage-rules" />
+	            <action index="160" id="document-delete" icon="folder-delete" label="actions.folder.delete" />
+	            <action index="170" id="document-manage-granular-permissions" icon="folder-manage-permissions" label="actions.folder.manage-permissions" />
+	            <action index="180" id="document-manage-repo-permissions" icon="folder-manage-permissions" label="actions.folder.manage-permissions" />
+	            <action index="190" id="document-manage-aspects" label="actions.folder.manage-aspects" />
+	            <action index="200" id="document-change-type" label="actions.folder.change-type" />
+	            <action index="210" id="view-in-explorer" />
+	            <action index="220" id="document-view-in-source-repository" label="actions.folder.view-source-repository" />
+	            <action index="350" id="document-view-googlemaps" />
+	            <action index="360" id="document-cloud-sync" />
+	            <action index="370" id="document-cloud-unsync" />
+	            <action index="380" id="document-view-in-cloud" />
+	            <action index="390" id="document-request-sync"/>
+	         </actionGroup>
+	
+	         <actionGroup id="document-link-browse">
+	            <action index="100" id="document-locate" label="actions.link.locate">
+	               <evaluator />
+	            </action>
+	            <action index="110" id="document-delete" label="actions.link.delete" />
+	         </actionGroup>
+	
+	         <actionGroup id="document-link-details">
+	            <action index="100" id="document-delete" label="actions.link.delete" />
+	         </actionGroup>
+	
+	         <actionGroup id="folder-link-browse">
+	            <action index="100" id="folder-view-details" />
+	            <action index="110" id="document-locate" label="actions.link.locate">
+	               <evaluator />
+	            </action>
+	            <action index="120" id="document-delete" icon="folder-delete" label="actions.link.delete" />
+	         </actionGroup>
+	
+	         <actionGroup id="folder-link-details">
+	            <action index="100" id="document-delete" icon="folder-delete" label="actions.link.delete" />
+	         </actionGroup>
+	
+	      </actionGroups>
+	</config>
+   
+</alfresco-config>   

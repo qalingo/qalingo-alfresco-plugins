@@ -1,0 +1,9 @@
+<webscript>
+  <shortname>Start Synchronization</shortname>
+  <description>Start Synchronization of the Master</description>
+  <url>/com/alfea/hoteia/startSynchronization?nodeRef={nodeRef}</url>
+  <family>Hoteia</family>
+  <format default="json"/>
+  <authentication runas="admin">user</authentication>
+  <transaction>required</transaction>
+</webscript>

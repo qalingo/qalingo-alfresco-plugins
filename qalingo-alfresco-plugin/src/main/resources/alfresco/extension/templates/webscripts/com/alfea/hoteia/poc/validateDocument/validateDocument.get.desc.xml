@@ -1,0 +1,9 @@
+<webscript>
+  <shortname>Validate Document</shortname>
+  <description>Validate the Document</description>
+  <url>/com/alfea/hoteia/validateDocument?nodeRef={nodeRef}</url>
+  <family>Hoteia</family>
+  <format default="json"/>
+  <authentication runas="admin">user</authentication>
+  <transaction>required</transaction>
+</webscript>

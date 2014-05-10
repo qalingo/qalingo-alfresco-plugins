@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>Qalingo Documents</shortname>
+  <description>Qalingo Documents Lists</description>
+  <url>/com/alfea/hoteia/poc/qalingoFiches</url>
+  <family>Hoteia</family>
+  <format default="json"/>
+  <authentication>user</authentication>
+</webscript>

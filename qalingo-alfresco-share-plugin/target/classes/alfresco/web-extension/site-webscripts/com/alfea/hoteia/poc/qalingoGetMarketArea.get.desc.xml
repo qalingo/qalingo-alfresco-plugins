@@ -1,0 +1,7 @@
+<webscript>
+   <shortname>Qalingo Get A Market Area</shortname>
+   <description>Call Qalingo Market Area WebScript</description>
+   <url>/com/alfea/hoteia/poc/getMarketArea?marketarea={marketarea}</url>
+   <format default="json"/>
+   <family>POC-Hoteia</family>
+</webscript>

@@ -1,0 +1,9 @@
+<webscript>
+  <shortname>Check Site Structure</shortname>
+  <description>Check the structure of Product Site</description>
+  <url>/com/alfea/hoteia/checkSiteStructure?nodeRef={nodeRef}</url>
+  <family>Hoteia</family>
+  <format default="json"/>
+  <authentication runas="admin">user</authentication>
+  <transaction>required</transaction>
+</webscript>

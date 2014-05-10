@@ -1,0 +1,9 @@
+<webscript>
+  <shortname>Start Create Product</shortname>
+  <description>Start Fiche Product</description>
+  <url>/com/alfea/hoteia/startCreateProduct?nodeRef={nodeRef}</url>
+  <family>Hoteia</family>
+  <format default="json"/>
+  <authentication runas="admin">user</authentication>
+  <transaction>required</transaction>
+</webscript>

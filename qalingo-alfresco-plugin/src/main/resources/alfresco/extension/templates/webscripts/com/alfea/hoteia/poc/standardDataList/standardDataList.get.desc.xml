@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>POC Standard Data List</shortname>
+  <description>POC Standard Data List</description>
+  <url>/com/alfea/hoteia/poc/standardDataList?type={type}</url>
+  <family>Hoteia</family>
+  <format default="json"/>
+  <authentication>user</authentication>
+</webscript>

@@ -1,0 +1,7 @@
+<webscript>
+   <shortname>List of Fiche</shortname>
+   <description>List of fiche</description>
+   <!-- one of dashlet, site-dashlet or user-dashlet -->
+   <family>site-dashlet</family>
+   <url>/com/alfea/hoteia/dashlet/fiches</url>
+</webscript>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model name="hta:model" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+	<!-- Optional meta-data about the model -->
+	<description>Hoteia Model</description>
+	<author></author>
+	<version>1.0</version>
+	
+	<!-- Imports are required to allow references to definitions in other models -->
+	<imports>
+		<!-- Import Alfresco Dictionary Definitions -->
+		<import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d" />
+		<!-- Import Alfresco Content Domain Model Definitions -->
+		<import uri="http://www.alfresco.org/model/content/1.0" prefix="cm" />
+		<!-- Import Alfresco Datalist Domain Model Definitions -->
+      <import uri="http://www.alfresco.org/model/datalist/1.0" prefix="dl"/>
+	</imports>
+	
+	<!-- Introduction of new namespaces defined by this model -->
+	<namespaces>
+		<namespace uri="http://www.hoteia.com/alfresco/model" prefix="hta"/>
+	</namespaces>
+	
+	<!-- CONSTRAINTS -->
+	<constraints>
+	</constraints>
+	
+	<!-- TYPES -->
+	<types>
+		
+		<type name="hta:standardDataListe">
+         <title>Configuration des listes de données</title>
+         <parent>dl:dataListItem</parent>
+         <properties>
+         	<property name="hta:idTypeParam">
+               <title>Type Param </title>
+               <type>d:text</type>
+            </property>
+            <property name="hta:idParamStandard">
+               <title>Code Param </title>
+               <type>d:text</type>
+            </property>
+            <property name="hta:libelleParamStandard">
+               <title>Libelle Param</title>
+               <type>d:text</type>
+               <index enabled="true">
+                    <tokenised>both</tokenised>
+               </index>
+            </property>
+          </properties>  
+	   </type>
+	   
+	   <type name="hta:typeDocumentsListe">
+         <title>Liste des types de documents</title>
+         <parent>dl:dataListItem</parent>
+         <properties>
+            <property name="hta:tpDocId">
+               <type>d:text</type>
+            </property>
+            <property name="hta:tpDocName">
+               <type>d:text</type>
+            </property>
+            <property name="hta:tpDocAspect1">
+               <type>d:text</type>
+            </property>
+			<property name="hta:tpDocAspect2">
+               <type>d:text</type>
+            </property>
+			<property name="hta:tpDocAspect3">
+               <type>d:text</type>
+            </property>
+			<property name="hta:tpDocAspect4">
+               <type>d:text</type>
+            </property>
+            <property name="hta:tpDocAspect5">
+               <type>d:text</type>
+            </property>
+            <property name="hta:tpDocAspect6">
+               <type>d:text</type>
+            </property>
+         </properties>
+	   </type>
+		
+		<type name="hta:master">
+			<parent>cm:content</parent>
+			<properties>
+				 <property name="hta:type">
+               		<type>d:text</type>
+            	 </property>
+            </properties>
+		</type>
+		
+		<type name="hta:product">
+			<parent>hta:master</parent>
+			<mandatory-aspects>
+           		<aspect>hta:productFicheAspect</aspect>
+       		</mandatory-aspects>	
+		</type>
+		
+	</types>
+	
+	<!-- ASPECTS -->
+	<aspects>
+		
+		<aspect name="hta:attachable">
+         <associations>
+            <association name="hta:imgProduit">
+               <source>
+                  <mandatory>false</mandatory>
+                  <many>true</many>
+               </source>
+               <target>
+                  <class>cm:cmobject</class>
+                  <mandatory>false</mandatory>
+                  <many>true</many>
+               </target>
+            </association>
+            <association name="hta:imgDigital">
+               <source>
+                  <mandatory>false</mandatory>
+                  <many>true</many>
+               </source>
+               <target>
+                  <class>cm:cmobject</class>
+                  <mandatory>false</mandatory>
+                  <many>true</many>
+               </target>
+            </association>
+            <association name="hta:imgVideo">
+               <source>
+                  <mandatory>false</mandatory>
+                  <many>true</many>
+               </source>
+               <target>
+                  <class>cm:cmobject</class>
+                  <mandatory>false</mandatory>
+                  <many>true</many>
+               </target>
+            </association>
+         </associations>
+      </aspect>
+		
+		
+		<aspect name="hta:commonAspect">
+			<title>Aspect Master Fiche</title>
+			<properties>
+				 <property name="hta:identifiant">
+               		<type>d:text</type>
+            	 </property>
+                 <property name="hta:state">
+               		<type>d:text</type>
+            	 </property>
+                 <property name="hta:codeMarketPlace">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:codeMarket">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:codeMarketArea">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:codeRetailers">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:codeLocalizations">
+               		<type>d:text</type>
+            	 </property>
+			</properties>
+		</aspect>
+		
+		
+		<aspect name="hta:catProdAspect">
+			<title>Aspect Cat/Prod</title>
+			<properties>
+				<property name="hta:codeCategorie">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:codeProduits">
+               		<type>d:text</type>
+            	 </property>
+			</properties>
+		</aspect>
+		
+		<aspect name="hta:catAspect">
+			<title>Aspect Cat</title>
+			<properties>
+				<property name="hta:codeCategorieOnly">
+               		<type>d:text</type>
+            	 </property>
+			</properties>
+		</aspect>
+		
+		<aspect name="hta:storeAspect">
+			<title>Aspect Store</title>
+			<properties>
+				<property name="hta:codeStore">
+               		<type>d:text</type>
+            	 </property>
+			</properties>
+		</aspect>		
+		
+		<aspect name="hta:ficheAspect">
+			<title>Aspect Master Fiche</title>
+			<properties>
+				<property name="hta:codeProduct">
+               		<type>d:text</type>
+            	 </property>
+				 <property name="hta:nameProduct">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:descriptionProduct">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:segmentSeoProduct">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:ogTitleProduct">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:ogDescriptionProduct">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:ogImageProduct">
+               		<type>d:text</type>
+            	 </property>
+			</properties>
+		</aspect>	
+		
+		<aspect name="hta:productFicheAspect">
+			<title>Aspect Product Fiche</title>
+			<properties>
+				<property name="hta:parentMasterId">
+               		<type>d:text</type>
+            	</property>
+			</properties>
+		</aspect>
+		
+		<aspect name="hta:masterAspect">
+			<title>Aspect Master</title>
+			<properties>
+				<property name="hta:oldCodeProduct">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:oldNameProduct">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:oldDescriptionProduct">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:oldSegmentSeoProduct">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:oldOgTitleProduct">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:oldOgDescriptionProduct">
+               		<type>d:text</type>
+            	 </property>
+            	 <property name="hta:oldOgImageProduct">
+               		<type>d:text</type>
+            	 </property>
+			</properties>
+		</aspect>
+		
+		<aspect name="hta:productAspect">
+			<title>Aspect Product Fiche</title>
+		</aspect>
+	
+	</aspects>
+	
+</model>	

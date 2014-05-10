@@ -1,0 +1,4 @@
+.doclist .onActionChecked a
+{
+   background-image: url(checked-16.png);
+}

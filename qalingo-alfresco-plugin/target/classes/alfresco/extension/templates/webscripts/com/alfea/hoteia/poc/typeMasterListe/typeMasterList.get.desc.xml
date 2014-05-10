@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>Master Coniguration DataList</shortname>
+  <description>Master Coniguration Data List</description>
+  <url>/com/alfea/hoteia/poc/typeMasterList</url>
+  <family>Hoteia</family>
+  <format default="json"/>
+  <authentication>user</authentication>
+</webscript>

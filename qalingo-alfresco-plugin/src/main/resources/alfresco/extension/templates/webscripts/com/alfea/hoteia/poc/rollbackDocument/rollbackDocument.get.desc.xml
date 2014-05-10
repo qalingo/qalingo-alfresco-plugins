@@ -1,0 +1,9 @@
+<webscript>
+  <shortname>Rollback Document</shortname>
+  <description>Rollback the Document</description>
+  <url>/com/alfea/hoteia/rollbackDocument?nodeRef={nodeRef}</url>
+  <family>Hoteia</family>
+  <format default="json"/>
+  <authentication runas="admin">user</authentication>
+  <transaction>required</transaction>
+</webscript>
